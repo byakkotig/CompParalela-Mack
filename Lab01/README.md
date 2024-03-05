@@ -2,16 +2,16 @@
 
 ## Sobre o projeto
 
-Esse projeto consiste em fazer um hello world em C
+Esse projeto consiste em fazer um hello world em C.
 Este documento contém instruções detalhadas sobre como compilar, executar e verificar os resultados do programa entregue.
 
 Testes foram realizados na plataforma AWS
 
 ## Integrantes
 
-- André Akio Morita Osakawa - 
-- Rafael de Souza Oliveira Cerqueira Tinôco - 
-- Rodrigo Mileo Lourenço Gil - 
+- André Akio Morita Osakawa - 10340045
+- Rafael de Souza Oliveira Cerqueira Tinôco - 10401436
+- Rodrigo Mileo Lourenço Gil - 10390174
 
 ## Instalação
 
@@ -31,4 +31,4 @@ Para compilar o código, entre na pasta do projeto e no terminal, utilize o coma
 
 ### Print da execução do código hello world na AWS
 
-![alt](/Lab01/assets/hello-world.png)
+![alt](/Lab01/assets/hello.png)

@@ -2,6 +2,6 @@
 
 ## Integrantes
 
-- André Akio Morita Osakawa - 
-- Rafael de Souza Oliveira Cerqueira Tinôco - 
-- Rodrigo Mileo Lourenço Gil - 
+- André Akio Morita Osakawa - 10340045
+- Rafael de Souza Oliveira Cerqueira Tinôco - 10401436
+- Rodrigo Mileo Lourenço Gil - 10390174
