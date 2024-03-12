@@ -2,7 +2,8 @@
 
 ## Sobre o projeto
 
-Esse projeto consiste em criar um código para resolver o problema de multiplicação de matrizes. Para isso utilizamos Pthreads
+Esse projeto consiste em criar um código para resolver o problema de multiplicação de matrizes, para isso utilizamos Pthreads.
+
 Este documento contém instruções detalhadas sobre como compilar, executar e verificar os resultados do programa entregue.
 
 Testes foram realizados na plataforma AWS
@@ -29,7 +30,7 @@ Para compilar o código, entre na pasta do projeto e no terminal, utilize o coma
 
 ## Resolução do exercicio proposto
 
-Como solicitado, segue abaixo o print da execução do programa de multiplicação de matrizes arrumado utilizando pthreads. O programa pede que o usuário digite o número de linhas e colunas da matriz A e quantas threads ele deseja, depois o usuário inseere os valores desejados na matriz e no vetor e a saída é sua matriz resultante.
+Como solicitado, segue abaixo o print da execução do programa de multiplicação de matrizes utilizando pthreads. O programa pede que o usuário digite o número de linhas e colunas da matriz A e quantas threads ele deseja, depois o usuário insere os valores desejados na matriz e no vetor e a saída é sua matriz resultante.
 
 ### Teste 1: Matrix 3x3 e numero de threads = 3
 
