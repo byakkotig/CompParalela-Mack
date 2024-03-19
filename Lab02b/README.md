@@ -116,11 +116,12 @@ Abaixo segue os prints dos tempos de execução dos códigos serial e pararelo, 
 #### Gráfico Speedup
 
 
+![alt](/Lab02b/assets/tab1.png)
 ![alt](/Lab02b/assets/graf2.png)
 
 3. Como você acha que poderia melhorar o seu algoritmo para obter maior benefício com o paralelismo? Para provar seu ponto, refaça a solução com essa abordagem e construa um novo gráfico de speedup para 1, 2, 4, 6 e 8 processadores.
 
-Para melhorar o algoritimo usamos 
+Para melhorar o algoritimo retiramos os prints das matrizes e deixamos apenas mostrar o tempo que levou para a execução, além disso modificamos o código para dividir as linhas da matriz entre as threads de maneira mais equilibrada, se o número de linhas não é um múltiplo do número de threads, as primeiras remainder threads (threads restantes) recebem uma linha extra. Isso garante que todas as threads tenham aproximadamente a mesma quantidade de trabalho a fazer, otimizando o paralelismo.
 
 #### Tempo versão paralela melhorada
 
@@ -146,4 +147,5 @@ Para melhorar o algoritimo usamos
 
 #### Gráfico Speedup
 
+![alt](/Lab02b/assets/tab2.png)
 ![alt](/Lab02b/assets/graf3.png)
