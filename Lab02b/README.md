@@ -45,15 +45,15 @@ Para 6 processadores `time taskset -c 0,1,2,3,4,5 [nome_do_arquivo]`
 Para 8 processadores `time taskset -c 0,1,2,3,4,5,6,7 [nome_do_arquivo]`
 
 
-Para compilar o código `Lab2bv1.c` com paralelismo, entre na pasta do projeto e no terminal, utilize o comando `gcc Lab2bv1.c -o Lab2bv1` e para executá-lo digite o comando `time taskset -c [número de processadores] ./Lab2bv1`. Como visto no print abaixo.
+Para compilar o código `Lab2bv1.c` com paralelismo, entre na pasta do projeto e no terminal, utilize o comando `gcc Lab2bv1.c -o Lab2bv1` e para executá-lo digite o comando `time taskset -c [número de processadores] ./Lab2bv1`. Como visto no exemplo abaixo.
 
 ![alt](/Lab02b/assets/compilacao1.png)
 
-Para compilar o código `Lab2bSerial` que contém o código com a versão serial entre na pasta do projeto e no terminal, utilize o comando `gcc Lab2bSerial.c -o Lab2bSerial` e para executá-lo digite o comando `time ./Lab2bSerial`. Como visto no print abaixo.
+Para compilar o código `Lab2bSerial` que contém o código com a versão serial entre na pasta do projeto e no terminal, utilize o comando `gcc Lab2bSerial.c -o Lab2bSerial` e para executá-lo digite o comando `time ./Lab2bSerial`. Como visto no exemplo abaixo.
 
-![alt](/Lab02/assets/compilacao2.png)
+![alt](/Lab02b/assets/compilacao2.png)
 
-Para compilar o código `Lab2bv2.c` que é a versão melhorada, entre na pasta do projeto e no terminal, utilize o comando `gcc Lab2bv2.c -o Lab2bv2` e para executá-lo digite o comando `time taskset -c [número de processadores] ./Lab2bv2`. Como visto no print abaixo.
+Para compilar o código `Lab2bv2.c` que é a versão melhorada, entre na pasta do projeto e no terminal, utilize o comando `gcc Lab2bv2.c -o Lab2bv2` e para executá-lo digite o comando `time taskset -c [número de processadores] ./Lab2bv2`. Como visto no exemplo abaixo.
 
 ![alt](/Lab02b/assets/compilacao3.png)
 
@@ -72,7 +72,7 @@ Abaixo segue os prints dos tempos de execução dos códigos serial e pararelo, 
 
  Tempo versão Serial
 
-![alt](/Lab02b/assets/serial.png)
+![alt](/Lab02b/assets/serial1.png)
 ![alt](/Lab02b/assets/serial2.png)
 
 
