@@ -135,6 +135,7 @@ Tempo versão paralela melhorada
 ![alt](/Lab02b/assets/par-mel4.png)
 
 6 Processadores
+
 ![alt](/Lab02b/assets/par-mel6.png)
 
 8 Processadores
