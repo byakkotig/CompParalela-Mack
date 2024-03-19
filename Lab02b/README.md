@@ -32,22 +32,22 @@ Usando o `git`, clone o repositório usando o seguinte comando:
 
 ## Compilação e Execução
 
-O exercicio proposto pelo professor consiste em usar o comando `time` no terminal Linux para mostrar o tempo de execução de cada código, além disso pede-se para executar os códigos com 1, 2 ,4, 6 e 8 processadores, para isso usamos o comando `taskset -c [número de processadores]`.
+O exercicio proposto pelo professor consiste em usar o comando `time` no terminal Linux para mostrar o tempo de execução de cada código, além disso pede-se para executar os códigos com 1, 2 ,4, 6 e 8 processadores, para isso usamos o comando `taskset -c [número dos processadores]`.
 
 Os comando utilizados foram: 
 
-Para 1 processador `time taskset -c 0 [nome_do_arquivo]` 
+- Para 1 processador `time taskset -c 0 [nome_do_arquivo]` 
 
-Para 2 processadores `time taskset -c 0,1 [nome_do_arquivo]`
+- Para 2 processadores `time taskset -c 0,1 [nome_do_arquivo]`
 
-Para 4 processadores `time taskset -c 0,1,2,3 [nome_do_arquivo]`
+- Para 4 processadores `time taskset -c 0,1,2,3 [nome_do_arquivo]`
 
-Para 6 processadores `time taskset -c 0,1,2,3,4,5 [nome_do_arquivo]`
+- Para 6 processadores `time taskset -c 0,1,2,3,4,5 [nome_do_arquivo]`
 
-Para 8 processadores `time taskset -c 0,1,2,3,4,5,6,7 [nome_do_arquivo]`
+- Para 8 processadores `time taskset -c 0,1,2,3,4,5,6,7 [nome_do_arquivo]`
 
 
-Para compilar o código `Lab2bv1.c` com paralelismo, entre na pasta do projeto e no terminal, utilize o comando `gcc Lab2bv1.c -o Lab2bv1` e para executá-lo digite o comando `time taskset -c [número de processadores] ./Lab2bv1`. Como visto no exemplo abaixo.
+Para compilar o código `Lab2bv1.c` com paralelismo, entre na pasta do projeto e no terminal, utilize o comando `gcc Lab2bv1.c -o Lab2bv1` e para executá-lo digite o comando `time taskset -c [número dos processadores] ./Lab2bv1`. Como visto no exemplo abaixo.
 
 ![alt](/Lab02b/assets/compilacao1.png)
 
@@ -55,7 +55,7 @@ Para compilar o código `Lab2bSerial` que contém o código com a versão serial
 
 ![alt](/Lab02b/assets/compilacao2.png)
 
-Para compilar o código `Lab2bv2.c` que é a versão melhorada, entre na pasta do projeto e no terminal, utilize o comando `gcc Lab2bv2.c -o Lab2bv2` e para executá-lo digite o comando `time taskset -c [número de processadores] ./Lab2bv2`. Como visto no exemplo abaixo.
+Para compilar o código `Lab2bv2.c` que é a versão melhorada, entre na pasta do projeto e no terminal, utilize o comando `gcc Lab2bv2.c -o Lab2bv2` e para executá-lo digite o comando `time taskset -c [número dos processadores] ./Lab2bv2`. Como visto no exemplo abaixo.
 
 ![alt](/Lab02b/assets/compilacao3.png)
 
@@ -72,13 +72,13 @@ Primeiramente, segue abaixo o print do comando `cat /proc/cpuinfo` pedido pelo p
 
 Abaixo segue os prints dos tempos de execução dos códigos serial e pararelo, depois o gráfico montado a partir dos resultados
 
- Tempo versão Serial
+#### Tempo versão Serial
 
 ![alt](/Lab02b/assets/serial1.png)
 ![alt](/Lab02b/assets/serial2.png)
 
 
-Tempo versão Pararela
+#### Tempo versão Pararela
 
 1 Processador
 
@@ -107,13 +107,13 @@ Tempo versão Pararela
 ![alt](/Lab02b/assets/par8p2.png)
 
 
-Gráfico de tempo
+#### Gráfico de tempo
 
 ![alt](/Lab02b/assets/graf1.png)
 
 2. Qual o speedup para 1, 2, 4, 6 e 8 processadores? Desenhe um gráfico mostrando os diferentes valores de speedup.
 
-Gráfico Speedup
+#### Gráfico Speedup
 
 
 ![alt](/Lab02b/assets/graf2.png)
@@ -122,7 +122,7 @@ Gráfico Speedup
 
 Para melhorar o algoritimo usamos 
 
-Tempo versão paralela melhorada
+#### Tempo versão paralela melhorada
 
 1 Processador
 
@@ -144,6 +144,6 @@ Tempo versão paralela melhorada
 
 ![alt](/Lab02b/assets/par-mel8.png)
 
-Gráfico Speedup
+#### Gráfico Speedup
 
 ![alt](/Lab02b/assets/graf3.png)
