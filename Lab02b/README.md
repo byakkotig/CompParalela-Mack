@@ -10,7 +10,9 @@ Os códigos criados foram:
 
 - `Lab2bSerial` que contém o código com a versão serial 
 
-- `Lab2bv2`que contém a versão com paralelismo melhorada. Após a criação dos códigos foram respondidas as questões realizadas pelo professor.
+- `Lab2bv2`que contém a versão com paralelismo melhorada. 
+
+Após a criação dos códigos foram respondidas as questões realizadas pelo professor.
 
 Este documento contém instruções detalhadas sobre como compilar, executar e verificar os resultados do programa entregue.
 
