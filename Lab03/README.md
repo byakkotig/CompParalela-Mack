@@ -1,0 +1,117 @@
+# Laboratório 3 - Área do trapezio
+
+## Sobre o projeto
+
+Esse projeto consiste em criar um código para resolver o problema do cálculo da área sob a curva através da soma de trapézios, foram criadas três códigos para a resolução do problema.
+
+Os códigos criados foram: 
+
+- `Lab3` que contém o código com solução paralela utilizando OpenMP
+
+- `lab3serial` que contém o código com a versão serial 
+
+- `Lab3`que contém a versão paralela com a diretiva critical pedido pelo professor
+
+Após a criação dos códigos foram respondidas as questões realizadas pelo professor.
+
+Este documento contém instruções detalhadas sobre como compilar, executar e verificar os resultados do programa entregue.
+
+Testes foram realizados no terminal Linux Ubuntu.
+
+## Integrantes
+
+- André Akio Morita Osakawa - 10340045
+- Rafael de Souza Oliveira Cerqueira Tinôco - 10401436
+- Rodrigo Mileo Lourenço Gil - 10390174
+
+## Instalação
+
+Usando o `git`, clone o repositório usando o seguinte comando:
+
+`git clone https://github.com/byakkotig/CompParalela-Mack.git`, depois use o comando `cd CompParalela-Mack` para entrar na pasta e o comando `cd Lab03` para entrar na pasta do lab
+
+## Compilação e Execução
+
+O exercicio proposto pelo professor consiste em usar o comando `time` no terminal Linux para mostrar o tempo de execução de cada código, além disso pede-se para executar os códigos com 1, 2 ,4, 6 e 8 processadores, para isso usamos o comando `taskset -c [número dos processadores]`.
+
+Os comando utilizados foram: 
+
+- Para 1 processador `time taskset -c 0 [nome_do_arquivo]` 
+
+- Para 2 processadores `time taskset -c 0,1 [nome_do_arquivo]`
+
+- Para 4 processadores `time taskset -c 0,1,2,3 [nome_do_arquivo]`
+
+- Para 6 processadores `time taskset -c 0,1,2,3,4,5 [nome_do_arquivo]`
+
+- Para 8 processadores `time taskset -c 0,1,2,3,4,5,6,7 [nome_do_arquivo]`
+
+Para compilar o código `lab3serial` que contém o código com a versão serial entre na pasta do projeto e no terminal, utilize o comando `gcc lab3serial.c -o lab3serial -lm` e para executá-lo digite o comando `time taskset -c [número dos processadores] ./lab3serial`. Como visto no exemplo abaixo.
+
+![alt](/Lab03/assets/compilacao1.png)
+![alt](/Lab03/assets/compilacao.png)
+
+Para compilar o código `Lab3.c` com paralelismo, entre na pasta do projeto e no terminal, utilize o comando `gcc Lab3.c -o Lab3` e para executá-lo digite o comando `time taskset -c [número dos processadores] ./Lab3`. Como visto no exemplo abaixo.
+
+![alt](/Lab03/assets/compilacao2.pn)
+
+Para compilar o código `Lab3.c` que é a versão melhorada, entre na pasta do projeto e no terminal, utilize o comando `gcc Lab3.c -o Lab3` e para executá-lo digite o comando `time taskset -c [número dos processadores] ./Lab3`. Como visto no exemplo abaixo.
+
+![alt](/Lab03/assets/compilacao3.pn)
+
+### Prints da execução dos códigos estão tanto na pasta `assets` quanto nas instruções de cada exercicio abaixo
+
+## Resolução dos exercicios propostos
+
+Primeiramente, segue abaixo o print do comando `cat /proc/cpuinfo` pedido pelo professor, para mostrar o processador utilizado para os testes e para a criação dos gráficos.
+
+![alt](/Lab03/assets/processador.png)
+
+1. Qual o tempo de execução serial e paralelo para 1, 2, 4, 6 e 8 processadores? Desenhe um gráfico contendo todos os tempos de execução
+
+Abaixo segue os prints dos tempos de execução dos códigos serial e pararelo, depois o gráfico montado a partir dos resultados
+
+#### Tempo versão Serial
+
+Os valores dos parâmetros utilizados foram: a = 0, b = 10 e n = 1000000000
+
+1 processador
+
+![alt](/Lab03/assets/serial1.png)
+![alt](/Lab03/assets/serial1t.png)
+
+2 processadores
+
+![alt](/Lab03/assets/serial2.png)
+![alt](/Lab03/assets/serial2t.png)
+
+4 processadores
+
+![alt](/Lab03/assets/serial4.png)
+![alt](/Lab03/assets/serial4t.png)
+
+6 processadores
+
+![alt](/Lab03/assets/serial6.png)
+![alt](/Lab03/assets/serial6t.png)
+
+8 processadores
+
+![alt](/Lab03/assets/serial8.png)
+![alt](/Lab03/assets/serial8t.png)
+
+#### Tempo versão Pararela
+
+
+#### Gráfico de tempo
+
+2. Qual o speedup para 1, 2, 4, 6 e 8 processadores? Desenhe um gráfico mostrando os diferentes valores de speedup.
+
+#### Gráfico Speedup
+
+3. Introduza na sua solução a diretiva critical. O que muda? Para provar seu ponto, refaça a solução com essa abordagem, calcule os novos valores e construa um novo gráfico de speedup para 1, 2, 4, 6 e 8 processadores.
+
+
+#### Tempo versão paralela com diretiva critical
+
+#### Gráfico Speedup
