@@ -131,11 +131,15 @@ Os valores dos parâmetros utilizados foram: a = 0, b = 10 e n = 1000000000
 
 #### Gráfico de tempo
 
+![alt](/Lab03/assets/tabela1.png)
+![alt](/Lab03/assets/grafico1.png)
+
 2. Qual o speedup para 1, 2, 4, 6 e 8 processadores? Desenhe um gráfico mostrando os diferentes valores de speedup.
 
+#### Gráfico Speedup versão Paralela
 
-
-#### Gráfico Speedup
+![alt](/Lab03/assets/tabela2.png)
+![alt](/Lab03/assets/grafico2.png)
 
 3. Introduza na sua solução a diretiva critical. O que muda? Para provar seu ponto, refaça a solução com essa abordagem, calcule os novos valores e construa um novo gráfico de speedup para 1, 2, 4, 6 e 8 processadores.
 
@@ -169,4 +173,7 @@ Com a diretiva critical #pragma omp critical, ela garante que apenas uma thread 
 ![alt](/Lab03/assets/critical8.png)
 ![alt](/Lab03/assets/critical8t.png)
 
-#### Gráfico Speedup
+#### Gráfico Speedup versão Critical
+
+![alt](/Lab03/assets/tabela3.png)
+![alt](/Lab03/assets/grafico3.png)
