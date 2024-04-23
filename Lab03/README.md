@@ -1,8 +1,8 @@
-# Laboratório 3 - Área do trapezio
+# Laboratório 3 - Cálculo da área sob a curva através da soma de trapézios usando OpenMP
 
 ## Sobre o projeto
 
-Esse projeto consiste em criar um código para resolver o problema do cálculo da área sob a curva através da soma de trapézios, foram criadas três códigos para a resolução do problema.
+Esse projeto consiste em criar um código para resolver o problema do cálculo da área sob a curva através da soma de trapézios em um gráfico, foram criadas três códigos para a resolução do problema.
 
 Os códigos criados foram: 
 
