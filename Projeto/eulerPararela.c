@@ -1,50 +1,71 @@
 #include <stdio.h>
-#include <mpfr.h>
+#include <stdlib.h>
 #include <omp.h>
+#include <mpfr.h>
 
-mpfr_t fatorial_atual, euler;
+// Função para calcular o fatorial
+void fatorial(mpfr_t resultado, int n) {
+    mpfr_set_d(resultado, 1.0, MPFR_RNDN); // Inicializa o resultado com 1
+    for(int i = 1; i <= n; i++) {
+        mpfr_mul_ui(resultado, resultado, i, MPFR_RNDN); // Multiplica o resultado por i
+    }
+}
 
-void mudar_fatorial(int n) { mpfr_mul_si(fatorial_atual, fatorial_atual, (n != 0) ? n : 1, MPFR_RNDN); }
+// Função para calcular a constante de Euler
+void euler(mpfr_t e, int precisao, int iteracoes, int num_threads) {
+    mpfr_set_default_prec(precisao);
+    mpfr_t *euler_partials = malloc(num_threads * sizeof(mpfr_t));
 
-void calcular_euler(int num_loops, int num_bits) {
-    mpfr_t euler;
-    mpfr_init2(euler, num_bits);
-    mpfr_init_set_d(euler, 0.0, MPFR_RNDN);
+    for (int i = 0; i < num_threads; i++) {
+        mpfr_init2(euler_partials[i], precisao);
+        mpfr_set_d(euler_partials[i], 0.0, MPFR_RNDN);
+    }
 
-    #pragma omp parallel for
-    for(int n = 0; n < num_loops; n++) {
+    #pragma omp parallel num_threads(num_threads)
+    {
+        int thread_id = omp_get_thread_num();
         mpfr_t fatorial_atual, temp;
-        mpfr_init2(fatorial_atual, num_bits);
-        mpfr_init_set_d(fatorial_atual, 1.0, MPFR_RNDN);
-        mpfr_init2(temp, num_bits);
-        mpfr_init_set_d(temp, 1.0, MPFR_RNDN);
+        mpfr_init2(fatorial_atual, precisao);
+        mpfr_init2(temp, precisao);
 
-        for(int i = 1; i <= n; i++) {
-            mpfr_mul_si(fatorial_atual, fatorial_atual, i, MPFR_RNDN);
+        #pragma omp for
+        for(int n = 0; n < iteracoes; n++) {
+            fatorial(fatorial_atual, n); // Calcula o fatorial
+            mpfr_ui_div(temp, 1, fatorial_atual, MPFR_RNDN); // Calcula o termo da série
+            mpfr_add(euler_partials[thread_id], euler_partials[thread_id], temp, MPFR_RNDN); // Adiciona o termo a e
         }
-
-        mpfr_div(temp, temp, fatorial_atual, MPFR_RNDN);
-        mpfr_add(euler, euler, temp, MPFR_RNDN);
 
         mpfr_clear(fatorial_atual);
         mpfr_clear(temp);
     }
 
-    mpfr_printf("A constante de Euler calculada até o decimal %d é: %.100Rf\n", num_bits, euler);
-    mpfr_clear(euler);
+    mpfr_set_d(e, 0.0, MPFR_RNDN); // Inicializa e com 1
+    for (int i = 0; i < num_threads; i++) {
+        mpfr_add(e, e, euler_partials[i], MPFR_RNDN); // Adiciona o termo a e
+        mpfr_clear(euler_partials[i]);
+    }
+    free(euler_partials);
+
+    mpfr_printf("A constante de Euler calculada até o decimal %d é: %.3000Rf\n", precisao, e);
+    mpfr_clear(e);
 }
 
-int main() {
-    int num_threads, num_loops, num_bits;
-    printf("Digite o número de threads: ");
-    scanf("%d", &num_threads);
-    printf("Digite o número de iterações: ");
-    scanf("%d", &num_loops);
-    printf("Digite o número de bits: ");
-    scanf("%d", &num_bits);
+int main(int argc, char *argv[]) {
+    if(argc != 4) {
+        printf("Uso: %s <número de threads> <número de iterações> <número de bits de precisão>\n", argv[0]);
+        return 1;
+    }
 
-    omp_set_num_threads(num_threads);
-    mpfr_set_default_prec(num_bits);
-    calcular_euler(num_loops, num_bits);
+    int num_threads = atoi(argv[1]);
+    int iteracoes = atoi(argv[2]);
+    int precisao = atoi(argv[3]);
+
+    mpfr_t e;
+    mpfr_init2(e, precisao);
+
+    euler(e, precisao, iteracoes, num_threads); // Calcula a constante de Euler
+
+    mpfr_clear(e);
+
     return 0;
 }
