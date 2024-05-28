@@ -46,9 +46,10 @@ Os comando utilizados foram:
 
 - Para 8 processadores `time taskset -c 0,1,2,3,4,5,6,7 [nome_do_arquivo]`
 
+Para compilar o código `` que contém o código com a versão serial entre na pasta do projeto e no terminal, utilize o comando `gcc .c -o  -lm` e para executá-lo digite o comando `time  ./`. Como visto no exemplo abaixo.
 
-(arrumar dps)
-Para compilar o código `` que contém o código com a versão serial entre na pasta do projeto e no terminal, utilize o comando `gcc .c -o  -lm` e para executá-lo digite o comando `time taskset -c [número dos processadores] ./`. Como visto no exemplo abaixo.
+
+
 
 ### Prints da execução dos códigos estão tanto na pasta `assets` quanto nas instruções de cada exercicio abaixo
 
@@ -57,3 +58,17 @@ Para compilar o código `` que contém o código com a versão serial entre na p
 Primeiramente, segue abaixo o print do comando `cat /proc/cpuinfo` pedido pelo professor, para mostrar o processador utilizado para os testes e para a criação dos gráficos.
 
 ![alt](/Projeto/assets/processador.png)
+
+
+
+
+
+
+
+Considere o problema da tartaruga envolvido no projeto final da disciplina. Desenvolva uma primeira versão serial e paralela levando em consideração os seguintes requisitos:
+
+1. Qual o tempo de execução serial e paralelo para 1, 2, 4, 6 e 8 processadores? Desenhe um gráfico contendo todos os tempos de execução
+
+2. Qual o speedup para 1, 2, 4, 6 e 8 processadores? Desenhe um gráfico mostrando os diferentes valores de speedup.
+
+3. Introduza na sua solução a diretiva critical. O que muda? Para provar seu ponto, refaça a solução com essa abordagem, calcule os novos valores e construa um novo gráfico de speedup para 1, 2, 4, 6 e 8 processadores.
