@@ -117,10 +117,9 @@ Abaixo segue os prints dos tempos de execução dos códigos serial e pararelo, 
 
 ![alt](/Projeto/assets/paralela8.png)
 
+
 2. Qual o speedup para 1, 2, 4, 6 e 8 processadores? Desenhe um gráfico mostrando os diferentes valores de speedup.
 
-![alt](/Projeto/assets/tabela1.png)
-![alt](/Projeto/assets/grafico1.png)
 
 3. Introduza na sua solução a diretiva critical. O que muda? Para provar seu ponto, refaça a solução com essa abordagem, calcule os novos valores e construa um novo gráfico de speedup para 1, 2, 4, 6 e 8 processadores.
 
@@ -145,6 +144,3 @@ Abaixo segue os prints dos tempos de execução dos códigos serial e pararelo, 
 8 processadores
 
 ![alt](/Projeto/assets/critical8.png)
-
-![alt](/Projeto/assets/tabela2.png)
-![alt](/Projeto/assets/grafico2.png)

@@ -1,71 +1,80 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <mpfr.h> // Para aritmética de precisão arbitrária
 #include <omp.h>
-#include <mpfr.h>
 
-// Função para calcular o fatorial
-void fatorial(mpfr_t resultado, int n) {
-    mpfr_set_d(resultado, 1.0, MPFR_RNDN); // Inicializa o resultado com 1
-    for(int i = 1; i <= n; i++) {
-        mpfr_mul_ui(resultado, resultado, i, MPFR_RNDN); // Multiplica o resultado por i
+void calcularFatoriais(mpfr_t *fatoriais, int n, int precisaoBits) {
+    mpfr_init2(fatoriais[0], precisaoBits);
+    mpfr_set_ui(fatoriais[0], 1, MPFR_RNDN);
+
+    for (int i = 1; i <= n; i++) {
+        mpfr_init2(fatoriais[i], precisaoBits);
+        mpfr_mul_ui(fatoriais[i], fatoriais[i-1], i, MPFR_RNDN);
     }
 }
 
 // Função para calcular a constante de Euler
-void euler(mpfr_t e, int precisao, int iteracoes, int num_threads) {
-    mpfr_set_default_prec(precisao);
-    mpfr_t *euler_partials = malloc(num_threads * sizeof(mpfr_t));
+void euler(int n, int nBits, int num_threads, mpfr_t resultado) {
+    mpfr_set_default_prec(nBits);
+    mpfr_set_ui(resultado, 0.0, MPFR_RNDN); // Define o resultado como 0.0
 
-    for (int i = 0; i < num_threads; i++) {
-        mpfr_init2(euler_partials[i], precisao);
-        mpfr_set_d(euler_partials[i], 0.0, MPFR_RNDN);
-    }
+    mpfr_t* fatoriais = malloc((n+1) * sizeof(mpfr_t)); // Aloca memória para o vetor de fatoriais
+    calcularFatoriais(fatoriais, n, nBits); // Calcula os fatoriais
+
+    mpfr_t* somas_parciais = malloc(num_threads * sizeof(mpfr_t)); // Aloca memória para as somas parciais
 
     #pragma omp parallel num_threads(num_threads)
     {
-        int thread_id = omp_get_thread_num();
-        mpfr_t fatorial_atual, temp;
-        mpfr_init2(fatorial_atual, precisao);
-        mpfr_init2(temp, precisao);
+        int thread_id = omp_get_thread_num(); // Obtém o número da thread atual
+        mpfr_init2(somas_parciais[thread_id], nBits);
+        mpfr_set_ui(somas_parciais[thread_id], 0.0, MPFR_RNDN); // Inicializa a soma parcial como 0.0
+
+        mpfr_t inverso_fatorial;
+        mpfr_init2(inverso_fatorial, nBits);
 
         #pragma omp for
-        for(int n = 0; n < iteracoes; n++) {
-            fatorial(fatorial_atual, n); // Calcula o fatorial
-            mpfr_ui_div(temp, 1, fatorial_atual, MPFR_RNDN); // Calcula o termo da série
-            mpfr_add(euler_partials[thread_id], euler_partials[thread_id], temp, MPFR_RNDN); // Adiciona o termo a e
+        for(int i = 0; i < n; i++) {
+            mpfr_ui_div(inverso_fatorial, 1, fatoriais[i], MPFR_RNDN); // Calcula a inversa do fatorial
+            mpfr_add(somas_parciais[thread_id], somas_parciais[thread_id], inverso_fatorial, MPFR_RNDN); // Adiciona na soma parcial
+
         }
 
-        mpfr_clear(fatorial_atual);
-        mpfr_clear(temp);
+        // Libera a memória alocada
+        mpfr_clear(inverso_fatorial);
     }
 
-    mpfr_set_d(e, 0.0, MPFR_RNDN); // Inicializa e com 1
-    for (int i = 0; i < num_threads; i++) {
-        mpfr_add(e, e, euler_partials[i], MPFR_RNDN); // Adiciona o termo a e
-        mpfr_clear(euler_partials[i]);
+    for(int i = 0; i < num_threads; i++) {
+        mpfr_add(resultado, resultado, somas_parciais[i], MPFR_RNDN); // Adiciona a soma parcial ao resultado
+        mpfr_clear(somas_parciais[i]); // Libera a memória alocada
     }
-    free(euler_partials);
+    free(somas_parciais);
 
-    mpfr_printf("A constante de Euler calculada até o decimal %d é: %.3000Rf\n", precisao, e);
-    mpfr_clear(e);
+    for(int i = 0; i <= n; i++) {
+        mpfr_clear(fatoriais[i]); // Libera a memória alocada
+    }
+    free(fatoriais);
 }
 
-int main(int argc, char *argv[]) {
-    if(argc != 4) {
-        printf("Uso: %s <número de threads> <número de iterações> <número de bits de precisão>\n", argv[0]);
+int main(int argc, char* argv[]) {
+    if (argc != 4) {
+        printf("\nEntre três argumentos. 1: Quantidade de threads a serem executadas. 2: Iterações. 3: Número de bits\n");
         return 1;
     }
+    // Converte os argumentos para inteiros
+    int num_threads = strtol(argv[1], NULL, 10);
+    int iteracoes = strtol(argv[2], NULL, 10);
+    int num_bits = strtol(argv[3], NULL, 10);
 
-    int num_threads = atoi(argv[1]);
-    int iteracoes = atoi(argv[2]);
-    int precisao = atoi(argv[3]);
+    mpfr_t euler_const;
+    mpfr_init2(euler_const, num_bits);
 
-    mpfr_t e;
-    mpfr_init2(e, precisao);
+    euler(iteracoes, num_bits, num_threads, euler_const); // Calcula a constante de Euler
 
-    euler(e, precisao, iteracoes, num_threads); // Calcula a constante de Euler
+    printf("A constante de Euler calculada até o decimal %d é: ", num_bits);
+    mpfr_out_str(stdout, 10, 0, euler_const, MPFR_RNDN);
+    printf("\n");
 
-    mpfr_clear(e);
+    mpfr_clear(euler_const);
 
     return 0;
 }
