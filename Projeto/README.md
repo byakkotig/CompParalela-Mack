@@ -129,6 +129,8 @@ Abaixo segue os prints dos tempos de execução dos códigos serial e pararelo, 
 
 3. Introduza na sua solução a diretiva critical. O que muda? Para provar seu ponto, refaça a solução com essa abordagem, calcule os novos valores e construa um novo gráfico de speedup para 1, 2, 4, 6 e 8 processadores.
 
+A diretiva #pragma omp critical garante que apenas uma thread por vez possa executar o bloco de código dentro da região crítica. Isso é importante quando você tem uma operação que não é atômica, como a adição de um valor a uma variável compartilhada (resultado), para garantir que a atualização da variável compartilhada seja feita de forma segura, que é o caso. Isso evita que ocorra condição de corrida.
+
 #### Tempo versão paralela com diretiva critical / Os valores utilizados foram num de threads (1,2,4,6,8)  como visto nos prints
 
 1 processador 
