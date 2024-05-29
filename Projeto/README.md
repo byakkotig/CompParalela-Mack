@@ -48,7 +48,7 @@ Os comando utilizados foram:
 
 Para compilar o código `euler.c` que contém o código com a versão serial entre na pasta do projeto e no terminal, utilize o comando `gcc -o euler euler.c -lmpfr -lgmp` e para executá-lo digite o comando `time taskset -c [número dos processadores] ./euler [numero de threads] [numero de iterações] [numero de bits]`. Como visto no exemplo abaixo.
 
-![alt](/Projeto/assets/compilacao1.png)
+![alt](/Projeto/assets/compilacao.png)
 
 Para compilar o código `eulerpara.c` com paralelismo, entre na pasta do projeto e no terminal, utilize o comando `gcc -o eulerpara -fopenmp eulerpara.c -lmpfr ` e para executá-lo digite o comando `time taskset -c [número dos processadores] ./eulerpara [numero de threads] [numero de iterações] [numero de bits]`. Como visto no exemplo abaixo.
 
@@ -126,6 +126,25 @@ Abaixo segue os prints dos tempos de execução dos códigos serial e pararelo, 
 
 #### Tempo versão paralela com diretiva critical / Os valores utilizados foram num de threads (1,2,4,6,8)  como visto nos prints
 
+1 processador 
+
+![alt](/Projeto/assets/critical1.png)
+
+2 processadores
+
+![alt](/Projeto/assets/critical2.png)
+
+4 processadores
+
+![alt](/Projeto/assets/critical4.png)
+
+6 processadores
+
+![alt](/Projeto/assets/critical6.png)
+
+8 processadores
+
+![alt](/Projeto/assets/critical8.png)
 
 ![alt](/Projeto/assets/tabela2.png)
 ![alt](/Projeto/assets/grafico2.png)
